@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guvi Contact Us</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            font-size: 16px;
+        }
+
+        .background-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background-color: #f0f0f0;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+            z-index: -1;
+        }
+
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .contact-info h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .contact-info>p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            background-color: #e6f3e6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-item-content {
+            flex: 1;
+        }
+
+        .contact-item-title {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .contact-item-info {
+            font-size: 15px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .contact-item-info p {
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .contact-form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .contact-form h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .contact-form h2 span {
+            color: #4CAF50;
+        }
+
+        .contact-form>p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group label .required {
+            color: red;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            background-color: #222;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-column ul li a:hover {
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icons img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .footer-button {
+            padding: 8px 15px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-button img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-decoration"></div>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Guvi Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#">Courses</a>
+            <a href="#">LIVE Classes</a>
+            <a href="#">Practice</a>
+            <a href="#">Resources</a>
+            <a href="#">Our Solutions</a>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Let us know your queries, feedbacks and enquiries. We are here to support you 24/7.</p>
+
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <img src="phone.jpg" alt="Phone">
+                </div>
+                <div class="contact-item-content">
+                    <div class="contact-item-title">Give us a call</div>
+                    <div class="contact-item-info">+91 9736097320</div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <img src="message.jpg" alt="Email">
+                </div>
+                <div class="contact-item-content">
+                    <div class="contact-item-title">Write to us</div>
+                    <div class="contact-item-info">cs@guvi.in</div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <img src="location.jpg" alt="Location">
+                </div>
+                <div class="contact-item-content">
+                    <div class="contact-item-title">Visit us in Chennai @</div>
+                    <div class="contact-item-info">
+                        <p>IITM Research park - phase 2, module #9, 3rd floor, D block, Kanagam Rd, Tharamani, Chennai, Tamil Nadu 600113</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-item-icon">
+                    <img src="location.jpg" alt="Location">
+                </div>
+                <div class="contact-item-content">
+                    <div class="contact-item-title">Visit us in Noida @</div>
+                    <div class="contact-item-info">
+                        <p>A11, HCL Corporation Pvt. Ltd, Block A, Sector 3, Noida, Uttar Pradesh 201307</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Say <span>Hello !</span></h2>
+            <p>Feel free to stop by and say hi !</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail id <span class="required">*</span></label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Contact Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject <span class="required">*</span></label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message <span class="required">*</span></label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit">Send</button>
+            </form>
+            <div id="formStatus"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Zen Class</h3>
+                <ul>
+                    <li><a href="#">Full Stack Development</a></li>
+                    <li><a href="#">Automation & Testing</a></li>
+                    <li><a href="#">Data Science</a></li>
+                    <li><a href="#">UI/UX</a></li>
+                    <li><a href="#">DevOps</a></li>
+                    <li><a href="#">Data Engineering</a></li>
+                    <li><a href="#">Business Analytics with Digital Marketing</a></li>
+                    <li><a href="#">All Programs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Popular Courses</h3>
+                <ul>
+                    <li><a href="#">Python - IIT-M Pravartak Certified</a></li>
+                    <li><a href="#">Java</a></li>
+                    <li><a href="#">Mobile Hacking</a></li>
+                    <li><a href="#">C Programming</a></li>
+                    <li><a href="#">AWS</a></li>
+                    <li><a href="#">Angular</a></li>
+                    <li><a href="#">Dark Web</a></li>
+                    <li><a href="#">All Courses</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Self-Paced Courses</h3>
+                <ul>
+                    <li><a href="#">Premium Pass</a></li>
+                    <li><a href="#">Courses Library</a></li>
+                    <li><a href="#">Free Library</a></li>
+                    <li><a href="#">Combos</a></li>
+                </ul>
+                <h3>Practice Platforms</h3>
+                <ul>
+                    <li><a href="#">Codekata</a></li>
+                    <li><a href="#">Webkata</a></li>
+                    <li><a href="#">Debugging</a></li>
+                    <li><a href="#">IDE</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="#">HackerKid</a></li>
+                    <li><a href="#">Placement Preparation</a></li>
+                    <li><a href="#">GUVI for Corporates</a></li>
+                </ul>
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Learn Hub <span style="color: red;">New</span></a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Web Stories</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Refer a friend</a></li>
+                    <li><a href="#">Become an Affiliate</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+                <div class="footer-buttons">
+                    <a href="#" class="footer-button">Refer & Earn</a>
+                    <a href="#" class="footer-button">Get it on Google Play</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>GUVI (Grab Your Vernacular Imprint) Geek Network Private Limited is a leading online learning and skills development company, incubated by IIT Madras and IIM Ahmedabad.</p>
+            <p>Established in 2014 and acquired by the HCL Group in 2022, GUVI is dedicated to providing effective and high-quality learning and skilling programs that transcend language barriers in technology education. GUVI today is trusted by over 3 million learners and 2000+ corporate partners.</p>
+            <p>Terms and Conditions | Privacy Policy</p>
+            <p>© GUVI Geeks Network Pvt. Ltd.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="dist/index.js"></script>
+</body>
+
+</html>
