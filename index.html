@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guvi Contact Us</title>
+    <link rel="shortcut icon" href="./src/assets/favicon.png" type="image/x-icon">
     <style>
         body,
         html {
@@ -13,6 +14,7 @@
             font-family: Arial, sans-serif;
             background-color: #ffffff;
             font-size: 16px;
+            overflow-x: hidden;
         }
 
         .background-decoration {
@@ -60,6 +62,7 @@
 
         .contact-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             max-width: 1200px;
             margin: 40px auto;
@@ -72,6 +75,7 @@
         .contact-info {
             flex: 1;
             padding-right: 40px;
+            max-width: 600px;
         }
 
         .contact-info h2 {
@@ -125,18 +129,13 @@
             font-weight: 600;
         }
 
-        .contact-item-info p {
-            margin: 0;
-            line-height: 1.4;
-        }
-
         .contact-form {
             background-color: #ffffff;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
             max-width: 400px;
+            width: 100%;
         }
 
         .contact-form h2 {
@@ -158,31 +157,126 @@
 
         .form-group {
             margin-bottom: 15px;
+            position: relative;
         }
 
         .form-group label {
-            display: block;
             font-size: 13px;
             color: #333;
             margin-bottom: 5px;
+            display: block;
         }
 
-        .form-group label .required {
-            color: red;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
+            transition: border-color 0.3s ease;
         }
 
-        .contact-form textarea {
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+
+        .form-group textarea {
             height: 100px;
             resize: vertical;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #dc3545;
+        }
+
+        .form-message-container {
+            margin: 15px 0;
+        }
+
+        .error-message {
+            display: none;
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .form-status {
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            display: none;
+            position: relative;
+            padding-left: 35px;
+            animation: slideIn 0.3s ease-in-out;
+        }
+
+        .form-status::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .form-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-status.success::before {
+            content: '✓';
+            color: #155724;
+        }
+
+        .form-status.error::before {
+            content: '!';
+            color: #721c24;
+            font-weight: bold;
+        }
+
+        .form-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-status.success .status-icon::before {
+            content: '✓';
+            color: #155724;
+        }
+
+        .form-status.error .status-icon::before {
+            content: '✕';
+            color: #721c24;
+        }
+
+        .status-message {
+            padding-left: 25px;
+            text-align: left;
         }
 
         .contact-form button {
@@ -195,11 +289,24 @@
             font-size: 15px;
             font-weight: 600;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
         }
 
         .contact-form button:hover {
             background-color: #45a049;
+        }
+
+        .contact-form button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            margin-left: 8px;
         }
 
         .footer {
@@ -214,6 +321,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            gap: 20px;
         }
 
         .footer-column {
@@ -242,32 +350,11 @@
             color: #ccc;
             text-decoration: none;
             font-size: 14px;
+            transition: color 0.3s ease;
         }
 
         .footer-column ul li a:hover {
             color: #fff;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .social-icons a {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-icons img {
-            width: 20px;
-            height: 20px;
         }
 
         .footer-buttons {
@@ -286,11 +373,12 @@
             font-size: 14px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
         }
 
-        .footer-button img {
-            height: 20px;
-            margin-right: 5px;
+        .footer-button:hover {
+            background-color: #444;
         }
 
         .footer-bottom {
@@ -301,6 +389,81 @@
             font-size: 14px;
             color: #ccc;
         }
+
+        /* Animations */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .contact-info {
+                padding-right: 0;
+                max-width: 100%;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .contact-form {
+                max-width: 100%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-column {
+                min-width: unset;
+                margin-bottom: 20px;
+            }
+
+            .footer-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer {
+                padding: 20px 10px;
+            }
+
+            .footer-column h3 {
+                font-size: 16px;
+            }
+
+            .footer-column ul li a {
+                font-size: 13px;
+            }
+
+            .footer-bottom {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
@@ -308,7 +471,7 @@
     <div class="background-decoration"></div>
     <nav class="navbar">
         <div class="logo-container">
-            <img src="logo.jpg" alt="Guvi Logo">
+            <img src="./src/assets/logo.jpg" alt="Guvi Logo">
         </div>
         <div class="nav-links">
             <a href="#">Courses</a>
@@ -326,7 +489,7 @@
 
             <div class="contact-item">
                 <div class="contact-item-icon">
-                    <img src="phone.jpg" alt="Phone">
+                    <img src="./src/assets/phone.jpg" alt="Phone">
                 </div>
                 <div class="contact-item-content">
                     <div class="contact-item-title">Give us a call</div>
@@ -336,7 +499,7 @@
 
             <div class="contact-item">
                 <div class="contact-item-icon">
-                    <img src="message.jpg" alt="Email">
+                    <img src="./src/assets/message.jpg" alt="Email">
                 </div>
                 <div class="contact-item-content">
                     <div class="contact-item-title">Write to us</div>
@@ -346,19 +509,20 @@
 
             <div class="contact-item">
                 <div class="contact-item-icon">
-                    <img src="location.jpg" alt="Location">
+                    <img src="./src/assets/location.jpg" alt="Location">
                 </div>
                 <div class="contact-item-content">
                     <div class="contact-item-title">Visit us in Chennai @</div>
                     <div class="contact-item-info">
-                        <p>IITM Research park - phase 2, module #9, 3rd floor, D block, Kanagam Rd, Tharamani, Chennai, Tamil Nadu 600113</p>
+                        <p>IITM Research Park - phase 2, module #9, 3rd floor, D block, Kanagam Rd, Tharamani, Chennai,
+                            Tamil Nadu 600113</p>
                     </div>
                 </div>
             </div>
 
             <div class="contact-item">
                 <div class="contact-item-icon">
-                    <img src="location.jpg" alt="Location">
+                    <img src="./src/assets/location.jpg" alt="Location">
                 </div>
                 <div class="contact-item-content">
                     <div class="contact-item-title">Visit us in Noida @</div>
@@ -370,32 +534,49 @@
         </div>
 
         <div class="contact-form">
-            <h2>Say <span>Hello !</span></h2>
-            <p>Feel free to stop by and say hi !</p>
+            <h2>Say <span class="highlight">Hello!</span></h2>
+            <p class="subtitle">Feel free to stop by and say hi!</p>
+
             <form id="contactForm">
                 <div class="form-group">
                     <label for="name">Name <span class="required">*</span></label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" name="name" required>
+                    <div id="name-error" class="error-message"></div>
                 </div>
+
                 <div class="form-group">
                     <label for="email">E-mail id <span class="required">*</span></label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" required>
+                    <div id="email-error" class="error-message"></div>
                 </div>
+
                 <div class="form-group">
                     <label for="phone">Contact Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" required>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div id="phone-error" class="error-message"></div>
                 </div>
+
                 <div class="form-group">
                     <label for="subject">Subject <span class="required">*</span></label>
-                    <input type="text" id="subject" required>
+                    <input type="text" id="subject" name="subject" required>
+                    <div id="subject-error" class="error-message"></div>
                 </div>
+
                 <div class="form-group">
                     <label for="message">Message <span class="required">*</span></label>
-                    <textarea id="message" required></textarea>
+                    <textarea id="message" name="message" required></textarea>
+                    <div id="message-error" class="error-message"></div>
                 </div>
-                <button type="submit">Send</button>
+
+                <button type="submit">
+                    <span class="button-text">Send</span>
+                    <span class="spinner"></span>
+                </button>
             </form>
-            <div id="formStatus"></div>
+
+        </div>
+        <div class="form-message-container">
+            <div id="formStatus" class="form-status"></div>
         </div>
     </div>
 
@@ -476,8 +657,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>GUVI (Grab Your Vernacular Imprint) Geek Network Private Limited is a leading online learning and skills development company, incubated by IIT Madras and IIM Ahmedabad.</p>
-            <p>Established in 2014 and acquired by the HCL Group in 2022, GUVI is dedicated to providing effective and high-quality learning and skilling programs that transcend language barriers in technology education. GUVI today is trusted by over 3 million learners and 2000+ corporate partners.</p>
+            <p>GUVI (Grab Your Vernacular Imprint) Geek Network Private Limited is a leading online learning and
+                skills development company, incubated by IIT Madras and IIM Ahmedabad.</p>
+            <p>Established in 2014 and acquired by the HCL Group in 2022, GUVI is dedicated to providing effective
+                and high-quality learning and skilling programs that transcend language barriers in technology
+                education. GUVI today is trusted by over 3 million learners and 2000+ corporate partners.</p>
             <p>Terms and Conditions | Privacy Policy</p>
             <p>© GUVI Geeks Network Pvt. Ltd.</p>
         </div>
